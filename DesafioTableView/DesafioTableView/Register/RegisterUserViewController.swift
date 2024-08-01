@@ -54,22 +54,45 @@ extension RegisterUserViewController: RegiterScreenProtocol {
     
     func tappedRemovedUserButton() {
         guard let name = screen?.nameTextField.text, let career = screen?.careerTextField.text else { return }
-        if !(screen?.nameTextField.hasText ?? false) || !(screen?.careerTextField.hasText ?? false) {
+        
+        if name.isEmpty || career.isEmpty {
             showAlert(title: "Atenção", message: "Preencha todas as informações para remover o item", titleButton: "OK")
-        } else if listUser.isEmpty {
+            return
+        }
+        
+        if listUser.isEmpty {
             showAlert(title: "Atenção", message: "Itens preenchidos, mas sem item na lista", titleButton: "OK")
+            return
+        }
+        
+        let userToRemove = listUser.first { $0.name == name && $0.career == career }
+        
+        if let user = userToRemove {
+            removeUser(name: user.name, career: user.career)
         } else {
-            for listName in listUser {
-                if !listUser.isEmpty && listName.name == name {
-                    removeUser(name: name, career: career)
-                
-                    return
-                } else {
-                    showAlert(title: "Atenção", message: "Itens não encontrado na lista", titleButton: "OK")
-                }
-            }
+            showAlert(title: "Atenção", message: "Itens não encontrado na lista", titleButton: "OK")
         }
     }
+
+    
+//    func tappedRemovedUserButton() {
+//        guard let name = screen?.nameTextField.text, let career = screen?.careerTextField.text else { return }
+//        if !(screen?.nameTextField.hasText ?? false) || !(screen?.careerTextField.hasText ?? false) {
+//            showAlert(title: "Atenção", message: "Preencha todas as informações para remover o item", titleButton: "OK")
+//        } else if listUser.isEmpty {
+//            showAlert(title: "Atenção", message: "Itens preenchidos, mas sem item na lista", titleButton: "OK")
+//        } else {
+//            removeUser(name: name, career: career)
+//            
+//            for listName in listUser {
+//                if listName.name != name {
+//                    
+//                } else {
+//                    showAlert(title: "Atenção", message: "Itens não encontrado na lista", titleButton: "OK")
+//                }
+//            }
+//        }
+//    }
 }
 
 extension RegisterUserViewController: UITableViewDelegate {
