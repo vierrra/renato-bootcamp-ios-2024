@@ -73,26 +73,6 @@ extension RegisterUserViewController: RegiterScreenProtocol {
             showAlert(title: "Atenção", message: "Itens não encontrado na lista", titleButton: "OK")
         }
     }
-
-    
-//    func tappedRemovedUserButton() {
-//        guard let name = screen?.nameTextField.text, let career = screen?.careerTextField.text else { return }
-//        if !(screen?.nameTextField.hasText ?? false) || !(screen?.careerTextField.hasText ?? false) {
-//            showAlert(title: "Atenção", message: "Preencha todas as informações para remover o item", titleButton: "OK")
-//        } else if listUser.isEmpty {
-//            showAlert(title: "Atenção", message: "Itens preenchidos, mas sem item na lista", titleButton: "OK")
-//        } else {
-//            removeUser(name: name, career: career)
-//            
-//            for listName in listUser {
-//                if listName.name != name {
-//                    
-//                } else {
-//                    showAlert(title: "Atenção", message: "Itens não encontrado na lista", titleButton: "OK")
-//                }
-//            }
-//        }
-//    }
 }
 
 extension RegisterUserViewController: UITableViewDelegate {
