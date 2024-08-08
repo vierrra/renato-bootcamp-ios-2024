@@ -28,7 +28,7 @@ class ListViewController: UIViewController {
 extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row != 0 && indexPath.row != 1 {
-            let employee = viewModel.didSelectRowAt(indexPath: indexPath)
+            let employee = viewModel.loadCurrentList(indexPath: indexPath)
             print(employee.name)
         }
     }
@@ -50,7 +50,7 @@ extension ListViewController: UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: EmployeeTableViewCell.identifier, for: indexPath) as? EmployeeTableViewCell
             cell?.delegate = self
-            cell?.setupCell(employee: viewModel.cellForRowAtEmployee(indexPath: indexPath))
+            cell?.setupCell(employee: viewModel.loadCurrentList(indexPath: indexPath))
             return cell ?? UITableViewCell()
         }
     }

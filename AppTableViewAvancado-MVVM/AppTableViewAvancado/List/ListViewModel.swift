@@ -27,11 +27,6 @@ class ListViewModel {
                                     Employee(name: "Jack Thomas", age: 29, job: "Sales Executive", salary: 80000, isSelectedHeart: true)
                                   ]
     
-    
-    func didSelectRowAt(indexPath: IndexPath) -> Employee {
-        return list[indexPath.row - 2]
-    }
-    
     func cellForRowAtPerson(indexPath: IndexPath) -> Bool {
         if indexPath.row == 0 || indexPath.row == 1 {
             return true
@@ -39,7 +34,7 @@ class ListViewModel {
         return false
     }
     
-    func cellForRowAtEmployee(indexPath: IndexPath) -> Employee {
+    func loadCurrentList(indexPath: IndexPath) -> Employee {
         return list[indexPath.row - 2]
     }
     
