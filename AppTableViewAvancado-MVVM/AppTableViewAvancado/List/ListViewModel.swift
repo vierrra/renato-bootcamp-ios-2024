@@ -27,11 +27,8 @@ class ListViewModel {
                                     Employee(name: "Jack Thomas", age: 29, job: "Sales Executive", salary: 80000, isSelectedHeart: true)
                                   ]
     
-    func cellForRowAtPerson(indexPath: IndexPath) -> Bool {
-        if indexPath.row == 0 || indexPath.row == 1 {
-            return true
-        }
-        return false
+    func validateFisrtAndSecondPosition(indexPath: IndexPath) -> Bool {
+        return indexPath.row != 0 && indexPath.row != 1 
     }
     
     func loadCurrentList(indexPath: IndexPath) -> Employee {

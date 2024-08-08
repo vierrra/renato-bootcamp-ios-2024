@@ -27,7 +27,7 @@ class ListViewController: UIViewController {
 
 extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row != 0 && indexPath.row != 1 {
+        if viewModel.validateFisrtAndSecondPosition(indexPath: indexPath) {
             let employee = viewModel.loadCurrentList(indexPath: indexPath)
             print(employee.name)
         }
@@ -43,14 +43,14 @@ extension ListViewController: UITableViewDataSource {
     
     // metodo responsavel pela criação das celulas
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if viewModel.cellForRowAtPerson(indexPath: indexPath) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: PersonTableViewCell.identifier, for: indexPath) as? PersonTableViewCell
-            cell?.setupCell(name: "Caio", lastName: "Fabrini")
-            return cell ?? UITableViewCell()
-        } else {
+        if viewModel.validateFisrtAndSecondPosition(indexPath: indexPath) {
             let cell = tableView.dequeueReusableCell(withIdentifier: EmployeeTableViewCell.identifier, for: indexPath) as? EmployeeTableViewCell
             cell?.delegate = self
             cell?.setupCell(employee: viewModel.loadCurrentList(indexPath: indexPath))
+            return cell ?? UITableViewCell()
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: PersonTableViewCell.identifier, for: indexPath) as? PersonTableViewCell
+            cell?.setupCell(name: "Caio", lastName: "Fabrini")
             return cell ?? UITableViewCell()
         }
     }
