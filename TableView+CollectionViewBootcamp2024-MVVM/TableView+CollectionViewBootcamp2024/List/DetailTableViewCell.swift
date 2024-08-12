@@ -68,6 +68,7 @@ class DetailTableViewCell: UITableViewCell {
     titleLabel.text = detail.title
     viewModel.setDetailList(detail: detail)
   }
+    
 }
 
 extension DetailTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
